@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="th"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HOKHOO Studio - พิกัดของดีบอกต่อ (Recommended Items)</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;700&amp;family=Prompt:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           1. ตั้งค่าพื้นฐาน (ป้องกันการซูมและล็อกสีพื้นหลัง)
+           ========================================= */
+        html, body {
+            margin: 0; padding: 0; width: 100%;
+            background-color: #000000;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        :root {
+            --color-black: #000000;
+            --color-dark-gray: #1a1a1a;
+            --color-mid-gray: #737373;
+            --color-light-gray: #BDBDBD;
+            --color-white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Prompt', 'Noto Sans Thai', sans-serif; }
+
+        /* =========================================
+           2. ระบบสลับร่างอัตโนมัติ (Responsive Switcher)
+           ========================================= */
+        .desktop-only-view {
+            display: flex; flex-direction: column; justify-content: flex-start; align-items: center;
+            min-height: 100vh; width: 100%; padding: 0 20px 40px 20px; color: var(--color-white);
+        }
+        .mobile-only-view {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .desktop-only-view {
+                display: none !important;
+            }
+            .mobile-only-view {
+                display: block !important;
+                width: 100%; padding: 0 0 40px 0; color: var(--color-white);
+            }
+        }
+
+        /* =========================================
+           3. STYLE FOR DESKTOP (คอมพิวเตอร์)
+           ========================================= */
+        .desktop-only-view .admin-btn { position: absolute; top: 20px; right: 20px; background-color: transparent; color: var(--color-mid-gray); border: 1px solid var(--color-mid-gray); padding: 8px 15px; border-radius: 20px; font-size: 0.8rem; cursor: pointer; z-index: 100; transition: all 0.3s; }
+        .desktop-only-view .admin-btn:hover { background-color: var(--color-white); color: var(--color-black); border-color: var(--color-white); }
+        .desktop-only-view .admin-btn .en-btn-text { font-size: 0.65rem; display: block; margin-top: 2px; }
+
+        .desktop-only-view header { position: relative; width: 100%; max-width: 800px; display: flex; flex-direction: column; align-items: center; margin-top: 40px; margin-bottom: 60px; padding: 60px 0; }
+        .desktop-only-view .hero-text { font-size: clamp(4rem, 18vw, 14rem); font-weight: 900; text-transform: uppercase; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%); z-index: 0; white-space: nowrap; pointer-events: none; color: transparent; -webkit-text-stroke: 2px rgba(115, 115, 115, 0.4); animation: textIntro 2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+        .desktop-only-view .hero-text::before { content: "HOKHOO"; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(120deg, transparent 0%, transparent 40%, var(--color-white) 50%, transparent 60%, transparent 100%); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.5)); animation: shine 4s linear infinite; }
+        .desktop-only-view .hero-text::after { content: "HOKHOO"; position: absolute; top: 0; left: 0; width: 100%; height: 100%; color: transparent; -webkit-text-stroke: 1px var(--color-light-gray); z-index: -1; animation: pulseWave 3s ease-out infinite; }
+        
+        @keyframes textIntro { 0% { letter-spacing: -40px; opacity: 0; transform: translate(-50%, -40%) scale(0.8); } 100% { letter-spacing: 5px; opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+        @keyframes shine { 0% { background-position: 200% center; } 100% { background-position: -200% center; } }
+        @keyframes pulseWave { 0% { transform: scale(1); opacity: 0.6; } 100% { transform: scale(1.15); opacity: 0; letter-spacing: 15px; } }
+        @keyframes floatOwl { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+        .desktop-only-view .logo-container { position: relative; z-index: 2; display: inline-block; margin-bottom: 25px; animation: floatOwl 4s ease-in-out infinite; text-decoration: none; outline: none; }
+        .desktop-only-view .logo-img { max-width: 320px; height: auto; filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.8)); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .desktop-only-view .logo-img:hover { transform: scale(1.08) rotate(-5deg); }
+
+        .desktop-only-view .header-title { text-align: center; z-index: 2; margin-bottom: 30px; }
+        .desktop-only-view .header-title h1 { font-size: 1.8rem; font-weight: 700; color: var(--color-white); }
+        .desktop-only-view .header-title .en-sub { font-size: 1rem; color: var(--color-light-gray); font-weight: 300; }
+
+        .desktop-only-view .search-container { display: flex; gap: 12px; width: 100%; max-width: 600px; position: relative; z-index: 2; }
+        .desktop-only-view .search-input { flex: 1; padding: 16px 25px; background-color: rgba(26, 26, 26, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.2); color: var(--color-white); font-size: 1rem; border-radius: 40px; outline: none; transition: all 0.3s; }
+        .desktop-only-view .search-input:focus { border-color: var(--color-white); background-color: rgba(26, 26, 26, 1); }
+
+        .desktop-only-view .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1000px; width: 100%; }
+        .desktop-only-view .product-card { background-color: var(--color-black); border: 1px solid #333; border-radius: 20px; overflow: hidden; padding: 15px; display: flex; flex-direction: column; transition: all 0.4s ease; }
+        .desktop-only-view .product-card:hover { transform: translateY(-10px); border-color: var(--color-white); box-shadow: 0 15px 30px rgba(255, 255, 255, 0.08); }
+        
+        .desktop-only-view .product-link { display: block; border-radius: 12px; overflow: hidden; position: relative; }
+        .desktop-only-view .product-link:hover .product-image { transform: scale(1.08); }
+        .desktop-only-view .product-image { width: 100%; aspect-ratio: 4/5; object-fit: cover; background-color: var(--color-dark-gray); transition: transform 0.5s ease; display: block; }
+        
+        .desktop-only-view .badge-id { position: absolute; top: 10px; left: 10px; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px); color: var(--color-white); padding: 5px 10px; border-radius: 8px; font-size: 0.75rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.3); z-index: 2; }
+        .desktop-only-view .product-info { padding: 15px 5px 5px 5px; display: flex; flex-direction: column; flex-grow: 1; }
+        .desktop-only-view .product-tags { font-size: 0.8rem; color: var(--color-mid-gray); margin-bottom: 8px; font-weight: 300; }
+        .desktop-only-view .product-title { font-size: 1.15rem; font-weight: 500; color: var(--color-white); margin-bottom: 20px; line-height: 1.4; }
+        .desktop-only-view .en-text { display: block; font-size: 0.85rem; font-weight: 300; color: var(--color-light-gray); margin-top: 4px; line-height: 1.2; }
+
+        .desktop-only-view .view-btn { margin-top: auto; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; background-color: var(--color-white); color: var(--color-black); padding: 10px; border-radius: 12px; text-decoration: none; font-size: 0.95rem; font-weight: 700; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1); line-height: 1.3; }
+        .desktop-only-view .view-btn:hover { background-color: #e0e0e0; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2); }
+        .desktop-only-view .view-btn .en-btn-sub { font-size: 0.75rem; color: #555; font-weight: 400; margin-top: 2px; }
+
+        /* ระบบแอดมิน Desktop */
+        .desktop-only-view .admin-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
+        .desktop-only-view .admin-panel { background-color: var(--color-dark-gray); width: 100%; max-width: 600px; padding: 30px; border-radius: 20px; border: 1px solid #444; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .desktop-only-view .admin-panel h2 { margin-bottom: 5px; font-size: 1.4rem; color: white; }
+        .desktop-only-view .admin-note { font-size: 0.8rem; color: var(--color-light-gray); margin-bottom: 20px; border-bottom: 1px solid #444; padding-bottom: 15px; }
+        .desktop-only-view .form-group { margin-bottom: 15px; }
+        .desktop-only-view .form-group label { display: block; margin-bottom: 5px; font-size: 0.9rem; color: var(--color-light-gray); }
+        .desktop-only-view .form-group input { width: 100%; padding: 10px; background: #111; border: 1px solid #444; color: white; border-radius: 8px; outline: none; }
+        .desktop-only-view .form-group input:focus { border-color: var(--color-white); }
+        .desktop-only-view .btn-save { background: white; color: black; border: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; font-size: 1rem; transition: background 0.3s; }
+        .desktop-only-view .btn-save:hover { background: #ddd; }
+        .desktop-only-view .btn-save:disabled { background: #666; cursor: not-allowed; }
+        .desktop-only-view .btn-cancel { background: transparent; color: #ff6b6b; border: 1px solid #ff6b6b; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; display: none; }
+        .desktop-only-view .btn-clear { background: transparent; color: #ff4444; border: 1px dashed #ff4444; padding: 12px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 15px; font-size: 1rem; }
+        .desktop-only-view .btn-clear:hover { background: rgba(255, 68, 68, 0.1); }
+        .desktop-only-view .btn-download { background: #28a745; color: white; border: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 25px; font-size: 1rem; border: 1px dashed white; }
+        .desktop-only-view .btn-download:hover { background: #218838; }
+        .desktop-only-view .close-admin { float: right; cursor: pointer; font-size: 1.5rem; color: gray; }
+        .desktop-only-view .admin-item-list { margin-top: 30px; border-top: 1px dashed #444; padding-top: 20px; }
+        .desktop-only-view .admin-item { display: flex; justify-content: space-between; align-items: center; background: #111; padding: 10px 15px; border-radius: 8px; margin-bottom: 10px; border: 1px solid #333; font-size: 0.9rem;}
+        .desktop-only-view .admin-actions { display: flex; gap: 8px; }
+        .desktop-only-view .btn-edit { background: #4dabf7; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; }
+        .desktop-only-view .btn-del { background: #ff4444; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; }
+
+        /* =========================================
+           4. STYLE FOR MOBILE (แอปมือถือ)
+           ========================================= */
+        .mobile-only-view .mobile-app-container { width: 100%; max-width: 480px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; padding: 20px 10px; }
+        .mobile-only-view header { position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; margin-top: 10px; margin-bottom: 25px; }
+        .mobile-only-view .hero-text { font-size: 25vw; font-weight: 900; text-transform: uppercase; position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); z-index: 0; white-space: nowrap; pointer-events: none; color: transparent; -webkit-text-stroke: 1px rgba(115, 115, 115, 0.3); animation: floatTextMobile 6s ease-in-out infinite; }
+        
+        @keyframes floatTextMobile { 0%, 100% { transform: translate(-50%, -50%); } 50% { transform: translate(-50%, -52%); } }
+        @keyframes floatOwlMobile { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        .mobile-only-view .logo-container { position: relative; z-index: 2; margin-bottom: 15px; animation: floatOwlMobile 4s ease-in-out infinite; text-decoration: none; outline: none; }
+        .mobile-only-view .logo-img { max-width: 150px; height: auto; filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.8)); }
+        .mobile-only-view .header-title { text-align: center; z-index: 2; margin-bottom: 20px; }
+        .mobile-only-view .header-title h1 { font-size: 1.3rem; font-weight: 700; color: var(--color-white); }
+        .mobile-only-view .header-title .en-sub { font-size: 0.8rem; color: var(--color-light-gray); font-weight: 300; margin-top: 2px;}
+        
+        .mobile-only-view .search-container { width: 100%; position: relative; z-index: 2; padding: 0 5px; }
+        .mobile-only-view .search-input { width: 100%; padding: 12px 20px; background-color: rgba(26, 26, 26, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.15); color: var(--color-white); font-size: 0.85rem; border-radius: 30px; outline: none; transition: all 0.3s; }
+        .mobile-only-view .search-input:focus { border-color: rgba(255,255,255,0.5); }
+
+        .mobile-only-view .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; width: 100%; padding: 0 5px; }
+        .mobile-only-view .product-card { background-color: var(--color-black); border: 1px solid #222; border-radius: 12px; overflow: hidden; padding: 6px; display: flex; flex-direction: column; }
+        .mobile-only-view .product-link { display: block; border-radius: 8px; overflow: hidden; position: relative; }
+        .mobile-only-view .product-image { width: 100%; aspect-ratio: 4/5; object-fit: cover; background-color: var(--color-dark-gray); display: block; }
+        .mobile-only-view .badge-id { position: absolute; top: 5px; left: 5px; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px); color: var(--color-white); padding: 3px 6px; border-radius: 6px; font-size: 0.55rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.2); z-index: 2; }
+        .mobile-only-view .product-info { padding: 8px 2px 2px 2px; display: flex; flex-direction: column; flex-grow: 1; }
+        .mobile-only-view .product-tags { font-size: 0.55rem; color: var(--color-mid-gray); margin-bottom: 4px; font-weight: 300; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .mobile-only-view .product-title { font-size: 0.75rem; font-weight: 500; color: var(--color-white); margin-bottom: 8px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;}
+        .mobile-only-view .en-text { display: block; font-size: 0.65rem; font-weight: 300; color: var(--color-light-gray); margin-top: 1px; }
+        
+        .mobile-only-view .view-btn { margin-top: auto; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; background-color: var(--color-white); color: var(--color-black); padding: 6px 2px; border-radius: 8px; text-decoration: none; font-size: 0.7rem; font-weight: 700; line-height: 1.2; }
+        .mobile-only-view .view-btn.disabled { background-color: var(--color-dark-gray); color: var(--color-mid-gray); pointer-events: none; }
+        .mobile-only-view .view-btn .en-btn-sub { font-size: 0.55rem; color: #555; font-weight: 400; margin-top: 1px;}
+    </style>
+</head>
+<body>
+
+    <div class="desktop-only-view">
+        <button class="admin-btn" onclick="openAdmin()">
+            ระบบผู้ดูแล<span class="en-btn-text">Admin Panel</span>
+        </button>
+
+        <header>
+            <div class="hero-text">HOKHOO</div>
+            <a href="#" class="logo-container" title="กลับหน้าแรก">
+                <img src="https://img2.pic.in.th/7a857774-c44a-418e-9438-27704f856485.jfif.png" alt="Hokhoo Studio" class="logo-img">
+            </a>
+            <div class="header-title">
+                <h1>พิกัดของดีบอกต่อ</h1>
+                <div class="en-sub">Recommended Items &amp; Links</div>
+            </div>
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="🔍 ค้นหารหัสพิกัด ชื่อสินค้า หรือ #แฮชแท็ก... (Search...)" onkeyup="filterProducts()">
+            </div>
+        </header>
+
+        <main id="productGrid" class="product-grid"></main>
+
+        <div id="adminModal" class="admin-modal">
+            <div class="admin-panel">
+                <span class="close-admin" onclick="closeAdmin()">×</span>
+                <h2>🛠️ จัดการพิกัดสินค้า</h2>
+                <div class="admin-note">
+                    กรอกเฉพาะภาษาไทย ระบบจะช่วยแปลภาษาอังกฤษให้อัตโนมัติในตอนกดบันทึก<br>
+                    *หากต้องการล้างข้อมูลเก่าที่ค้างอยู่ ให้กดปุ่ม "ล้างข้อมูลทั้งหมด" ด้านล่างสุดครับ
+                </div>
+                
+                <form id="addProductForm">
+                    <input type="hidden" id="edit_index" value="-1">
+                    <div class="form-group">
+                        <label>รหัสอ้างอิงพิกัด / ID (เช่น HK01)</label>
+                        <input type="text" id="a_id" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>ชื่อสินค้า / Name (กรอกแค่ภาษาไทย)</label>
+                        <input type="text" id="a_name" required="" placeholder="เช่น โคมไฟตั้งโต๊ะสุดมินิมอล">
+                    </div>
+                    <div class="form-group">
+                        <label>ลิ้งค์รูปภาพหน้าปก / Image (URL)</label>
+                        <input type="url" id="a_image" required="" placeholder="https://...">
+                    </div>
+                    <div class="form-group">
+                        <label>ลิ้งค์พิกัดสินค้า / Link (Shopee / Lazada / Tiktok)</label>
+                        <input type="url" id="a_link" required="" placeholder="https://...">
+                    </div>
+                    <div class="form-group">
+                        <label>แฮชแท็ก / Tags (คั่นด้วยช่องว่าง เช่น #แต่งห้อง #มินิมอล)</label>
+                        <input type="text" id="a_tags" placeholder="#แต่งโต๊ะทำงาน #ของมันต้องมี">
+                    </div>
+                    <button type="submit" id="submitBtn" class="btn-save" style="background-color: white; color: black;">+ เพิ่มพิกัดใหม่</button>
+                    <button type="button" id="cancelEditBtn" class="btn-cancel" onclick="cancelEdit()" style="display: none;">ยกเลิกการแก้ไข</button>
+                </form>
+
+                <div class="admin-item-list" id="adminItemList"></div>
+                
+                <button class="btn-clear" onclick="clearAllData()">🗑️ ล้างข้อมูลทั้งหมด (Clear All Data)</button>
+                
+                <button class="btn-download" onclick="downloadCleanHTML()">📥 ดาวน์โหลดไฟล์ HTML (อัปเดตล่าสุด นำไปใช้อัปขึ้น Github)</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="mobile-only-view">
+        <div class="mobile-app-container">
+            <header>
+                <div class="hero-text">HOKHOO</div>
+                <a href="#" class="logo-container" title="รีเฟรชหน้าเว็บ">
+                    <img src="https://img2.pic.in.th/7a857774-c44a-418e-9438-27704f856485.jfif.png" alt="Hokhoo Studio" class="logo-img">
+                </a>
+                <div class="header-title">
+                    <h1>พิกัดของดีบอกต่อ</h1>
+                    <div class="en-sub">Recommended Items &amp; Links</div>
+                </div>
+                <div class="search-container">
+                    <input type="text" id="searchInputMobile" class="search-input" placeholder="🔍 ค้นหารหัสพิกัด ชื่อ หรือ #แฮชแท็ก..." onkeyup="filterProductsMobile()">
+                </div>
+            </header>
+
+            <main id="productGridMobile" class="product-grid"></main>
+        </div>
+    </div>
+
+
+    <script>
+        // 1. เคลียร์ข้อมูลตั้งต้นให้เป็นอาร์เรย์ว่างเปล่า (ไม่มีสินค้าเลย)
+        const initialData = [
+          {
+                    "id": "HH012",
+                    "name": "คลิปสอนทำผม",
+                    "name_en": "HOKHOO Selected Item",
+                    "image": "https://img2.pic.in.th/e5568dc9-f66e-4fb2-9fa8-af43ff735817.jpg",
+                    "link": "https://vt.tiktok.com/ZSCU4Np19/",
+                    "tags": "#ทำผม #ทำผมออกงาน #ทรงผม #ผม"
+          },
+          {
+                    "id": "HH011",
+                    "name": "คลิปสอนทำผม",
+                    "name_en": "HOKHOO Selected Item",
+                    "image": "https://img1.pic.in.th/images/4879d6d1-2851-4316-a0a0-6a5f838d3f75.jpg",
+                    "link": "https://vt.tiktok.com/ZSCUXw9JD/",
+                    "tags": "#ทำผม #ทำผมออกงาน #ทรงผม #ผม"
+          },
+          {
+                    "id": "HH010",
+                    "name": "คลิปสอนทำผม",
+                    "name_en": "HOKHOO Selected Item",
+                    "image": "https://img2.pic.in.th/e554eecf-17cc-4c2c-a039-83b2387c0947.jpg",
+                    "link": "https://vt.tiktok.com/ZSCUXP3A4/",
+                    "tags": "#ทำผม #ทำผมออกงาน #ทรงผม #ผม"
+          },
+          {
+                    "id": "HH009",
+                    "name": "คลิปสอนทำผม",
+                    "name_en": "HOKHOO Selected Item",
+                    "image": "https://img1.pic.in.th/images/1c09651d-20fb-4b2b-a1ea-aa1cf658df23.jpg",
+                    "link": "https://vt.tiktok.com/ZSCUCpE63/",
+                    "tags": "#ทำผม #ทำผมออกงาน #ทรงผม #ผม"
+          },
+          {
+                    "id": "H008",
+                    "name": "Labsy Top เสื้อคอเหลี่ยมแขนกุด",
+                    "name_en": "HOKHOO Selected Item",
+                    "image": "https://img1.pic.in.th/images/94821925-5325-4f54-b718-8bfec32c03e5.jpg",
+                    "link": "https://www.tiktok.com/view/product/1729844805991827637?_d=f2me1glm7je93b&_svg=1&chain_key=%7B%22t%22%3A1%2C%22k%22%3A%22000000000000000007656750071908009749%22%2C%22sc%22%3A%22copy%22%7D&checksum=46c6b8fb5d3c5c4f4592333eb0817f8464e34abf2bc77d7375ad68dea2979810&encode_params=MIIBUQQMIiah7idLFaqgG9mYBIIBLeTY4aDnlSnH2isOvMy8b7U7cU-triPmC0GCSYhvmqHi5Dk9PtaYyKiqedHEhB53DFOuoK5gaK6FHa4T4_m2_irVAVbZSWQjixydgJc19scbdL_lQxK4PzDJ6_yAsOTMqr-AtK9VKjuAXbhr5E7ruqYmfynTTZn89E3daxeyuDtt_o72SSpeMRJmIHZ0zei6OGIu50EhcbtwDZPjJBQxLWoY42g1uGXXC0u7YTbK2ASm-ZdHjVEQH7_r_bciIrau4NM7RDP00kawhtsBwr_mfShGyqSaXHRcu8brLnYVuDsG15c1_ILNSlC-0-j4PXFc7nd7fA-hHTksFPZh6jj5N5OZm42zPmcbUPG_4O3VIYL-L6yLTuQwYvJBkBiB6ZFg99imzIsas9ybUBLmRhAEECsRJ5E3ghzDzXIL0QMzifA%3D&og_info=%7B%22title%22%3A%22Labsy+Top+%E0%B9%80%E0%B8%AA%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%84%E0%B8%AD%E0%B9%80%E0%B8%AB%E0%B8%A5%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A1%E0%B9%81%E0%B8%82%E0%B8%99%E0%B8%81%E0%B8%B8%E0%B8%94%22%2C%22image%22%3A%22https%3A%5C%2F%5C%2Fp16-oec-va.ibyteimg.com%5C%2Ftos-maliva-i-o3syd03w52-us%5C%2F1843dbf21e244e42bf48396ebb2592a9~tplv-o3syd03w52-resize-webp%3A260%3A260.webp%3Fdr%3D15582%26t%3D555f072d%26ps%3D933b5bde%26shp%3D7745054a%26shcp%3D9b759fb9%26idc%3Dmy2%26from%3D2001012042%22%7D&panel_source_v2=share_panel&sec_user_id=MS4wLjABAAAAGfH4oaicFnkhrkUIfW664pmmY0JI_UxPFmk7FqwoPjOcruYAj3eFQkyQJdhkax2U&share_app_id=1180&share_enter_from=&share_link_id=6A35A47A-A756-42A3-A083-0A302C71EB05&share_region=TH&social_share_type=15&timestamp=1782726060&trackParams=%7B%22enable_shop_tab_popup%22%3A1%2C%22device_id%22%3A%227625919592679245330%22%2C%22enter_from_info%22%3A%22product_share_outside%22%2C%22source_page_type%22%3A%22product_share%22%2C%22traffic_source_list%22%3A%5B2%5D%7D&tt_from=copy&u_code=E87IH9I68LH38M&ug_btm=b6880%2Cb2878&unique_id=hokhoo.review&user_id=7239272794700710918&utm_campaign=client_share&utm_medium=ios&utm_source=copy",
+                    "tags": "#เสื้อดำ #เสื้อสีดำ #แฟชั่นผู้หญิงสีดำ #พิกัดเสื้อดำ"
+          },
+          {
+                    "id": "HH007",
+                    "name": "เสื้อชั้นใน คอนสวิง น่ารัก และเซ็กซี่ คอวี สำหรับผู้หญิง สไตล์ฮอต ไส้นวดหลัง ทรงสลิมฟิต เรียบหรู แขนกุด สีขาว ท๊อป",
+                    "name_en": "HOKHOO Selected Item",
+                    "image": "https://img2.pic.in.th/ebfdb27b-155f-4e60-b626-4ad2c219dc0e.jpg",
+                    "link": "https://vt.tiktok.com/ZS96uQnvATJPm-nGo2N/",
+                    "tags": "#เสื้อดำ #เสื้อสีดำ #แฟชั่นผู้หญิงสีดำ #พิกัดเสื้อดำ"
+          },
+          {
+                    "id": "HH006",
+                    "name": "MUDO เสื้อยืดผู้หญิงคอวีแขนสั้นดีไซน์ซิป ผ้านุ่มนวลสบายตัว ทรงกระชับร่างช่วยให้ดูผอมลง ทันแฟชั่นมีออร่า ใส่เป็นชุดในหรือใส่เดี่ยวได้ เหมาะสำหรับฤดูร้อน",
+                    "name_en": "HOKHOO Selected Item",
+                    "image": "https://img2.pic.in.th/35904219-9239-4306-b0eb-49bff7e6a316.jpg",
+                    "link": "https://vt.tiktok.com/ZS96xhTXBHhcx-A1gIM/",
+                    "tags": "#เสื้อดำ #เสื้อสีดำ #แฟชั่นผู้หญิงสีดำ #พิกัดเสื้อดำ"
+          },
+          {
+                    "id": "HH005",
+                    "name": "การออกแบบที่ไม่ซ้ำกันและสวยงามความรู้สึกเฉพาะกลุ่มด้านบน 2026 ฤดูร้อนใหม่ Hanri Hanqi Qing ผูกผ่อนคลายความรู้สึกสีดำเปิดไหปลาร้าเสื้อยืดฤดูร้อนสำหรับผู้หญิง2655",
+                    "name_en": "HOKHOO Selected Item",
+                    "image": "https://img1.pic.in.th/images/4e6611dd-dcf6-4327-95f7-b686b663617f.jpg",
+                    "link": "https://vt.tiktok.com/ZS96uQjoaYypr-jIpW6/",
+                    "tags": "#เสื้อดำ #เสื้อสีดำ #แฟชั่นผู้หญิงสีดำ #พิกัดเสื้อดำ"
+          },
+          {
+                    "id": "HH004",
+                    "name": "เสื้อปาดไหล่ผู้หญิง เสื้อลำลองคอกว้าง เสื้อแหวกเอวสุดเซ็กซี่ เสื้อผู้หญิงสีพื้น แมทช์ง่าย ผ้านุ่ม ผ้าดีใส่สบาย เหมาะกับอากาศร้อน ๆ Lady Women Clothing Tshirt",
+                    "name_en": "HOKHOO Selected Item",
+                    "image": "https://img1.pic.in.th/images/71b1d176-a725-4f9d-bedf-00d4fb21f205.jpg",
+                    "link": "https://vt.tiktok.com/ZS96ufTRsW2SN-V4cse/",
+                    "tags": "#เสื้อสีขาว #เสื้อผู้หญิง #เสื้อแฟชั่น #แฟชั่นสีขาว"
+          },
+          {
+                    "id": "HH003",
+                    "name": "เสื้อสายเดี่ยวลูกไม้สีขาวสำหรับผู้หญิง เหมาะสำหรับใส่เป็นเสื้อนอกหรือเป็นเสื้อตัวใน สไตล์อเมริกัน เซ็กซี่แบบไม่มีแขน ดีไซน์กระดูกปลา รุ่นใหม่สำหรับฤดูร้อน",
+                    "name_en": "HOKHOO Selected Item",
+                    "image": "https://img1.pic.in.th/images/67f27a04-45b2-4fa6-a9ae-c99ab75d0656.jpg",
+                    "link": "https://vt.tiktok.com/ZS96uPBarE4xb-oUpY6/",
+                    "tags": "#เสื้อสีขาว #เสื้อผู้หญิง #เสื้อแฟชั่น #แฟชั่นสีขาว"
+          },
+          {
+                    "id": "HH002",
+                    "name": "Aurora พร้อมส่ง เสื้อสายเดี่ยว ผ้าบางเบา รายละเอียดขอบลูกไม้ สายผูกโบว์ ดีเทลเก๋ๆน่ารักไม่เบา",
+                    "name_en": "HOKHOO Selected Item",
+                    "image": "https://img2.pic.in.th/56f46cd0-54c8-4a13-8993-30c75e6093e1.jpg",
+                    "link": "https://vt.tiktok.com/ZS96uPPD8kpvo-nxWF6/",
+                    "tags": "#เสื้อสีขาว #เสื้อผู้หญิง #เสื้อแฟชั่น #แฟชั่นสีขาว"
+          },
+          {
+                    "id": "HH001",
+                    "name": "เสื้อคอวี แต่งลูกไม้ แต่งกระดุมมุก ดีเทลสุดน่ารัก ใส่ได้หลายโอกาส",
+                    "name_en": "HOKHOO Selected Item",
+                    "image": "https://img2.pic.in.th/5d442fb9-383f-467a-bfd6-6ba5e3c83b39.jpg",
+                    "link": "https://vt.tiktok.com/ZS96uP2mWJfxN-a4Fkb/",
+                    "tags": "#เสื้อสีขาว #เสื้อผู้หญิง #เสื้อแฟชั่น #แฟชั่นสีขาว"
+          }
+];
+
+        // ดึงข้อมูลจากหน่วยความจำ
+        let products = JSON.parse(localStorage.getItem('hokhooCreatorData')) || initialData;
+
+        // 🟢 ฟังก์ชันแปลภาษาอังกฤษอัตโนมัติ (ผ่าน API ของ Google)
+        async function fetchAutoTranslation(thaiText) {
+            if(!thaiText) return "HOKHOO Selected Item";
+            try {
+                // เรียกใช้ Google Translate API แบบไม่ต้องใช้ Key (สำหรับโปรเจกต์ขนาดเล็ก)
+                const response = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=th&tl=en&dt=t&q=${encodeURIComponent(thaiText)}`);
+                const result = await response.json();
+                return result[0][0][0]; // คืนค่าคำแปล
+            } catch (error) {
+                console.error("Translation Error:", error);
+                return "HOKHOO Selected Item"; // ถ้าเน็ตหลุดหรือมีปัญหา ให้ใช้ค่าเริ่มต้น
+            }
+        }
+
+        // ฟังก์ชันบันทึกและอัปเดตตารางพร้อมกัน
+        function saveData() {
+            localStorage.setItem('hokhooCreatorData', JSON.stringify(products));
+            renderProducts(products);          
+            renderProductsMobile(products);    
+            renderAdminList();                 
+        }
+
+        // 🟢 ฟังก์ชันล้างข้อมูลทั้งหมด 
+        function clearAllData() {
+            if(confirm("⚠️ คำเตือน: คุณแน่ใจหรือไม่ว่าจะ 'ลบสินค้าทั้งหมด' ออกจากระบบ?\n(การกระทำนี้จะล้างหน้าเว็บให้กลับไปว่างเปล่า 100%)")) {
+                products = [];
+                saveData();
+                alert("ล้างข้อมูลเรียบร้อยแล้ว! ตอนนี้หน้าเว็บว่างเปล่าพร้อมใช้งานครับ");
+            }
+        }
+
+
+        /* -----------------------------------------
+           JAVASCRIPT FOR DESKTOP 
+           ----------------------------------------- */
+        function renderProducts(dataToRender) {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = ""; 
+
+            // หากไม่มีข้อมูลให้โชว์หน้าว่าง
+            if(dataToRender.length === 0) {
+                grid.innerHTML = `
+                <div style='grid-column: span 3; text-align:center; width:100%; color:#777; padding: 40px 0;'>
+                    <p style='margin-bottom: 5px;'>ยังไม่มีสินค้าในระบบ</p>
+                    <span class='en-text' style='font-size: 0.8rem;'>No items available</span>
+                </div>`;
+                return;
+            }
+
+            dataToRender.forEach(p => {
+                const enTextDisplay = p.name_en ? p.name_en : "HOKHOO Selected Item";
+                const isDisabled = p.link.includes("javascript:void(0)") ? "disabled" : "";
+                
+                const card = `
+                <div class="product-card">
+                    <a href="${p.link}" class="product-link" ${isDisabled ? "" : 'target="_blank"'}>
+                        <div class="badge-id">${p.id}</div> 
+                        <img src="${p.image}" alt="${p.name}" class="product-image" loading="lazy">
+                    </a>
+                    <div class="product-info">
+                        <div class="product-tags">${p.tags}</div> 
+                        <h3 class="product-title">
+                            ${p.name}
+                            <span class="en-text">${enTextDisplay}</span>
+                        </h3>
+                        <!-- 🟢 แก้ไขปุ่มตรงนี้ -->
+                        <a href="${p.link}" ${isDisabled ? "" : 'target="_blank"'} class="view-btn ${isDisabled}">
+                            📍 ดูพิกัด คลิ๊ก!
+                            <span class="en-btn-sub">Click to View!</span>
+                        </a>
+                    </div>
+                </div>`;
+                grid.innerHTML += card;
+            });
+        }
+
+        function filterProducts() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const filtered = products.filter(p => 
+                p.id.toLowerCase().includes(query) || 
+                p.tags.toLowerCase().includes(query) ||
+                p.name.toLowerCase().includes(query) ||
+                (p.name_en && p.name_en.toLowerCase().includes(query))
+            );
+            renderProducts(filtered);
+        }
+
+        /* --- ระบบแอดมิน --- */
+        function openAdmin() {
+            const password = prompt("กรุณาใส่รหัสผ่าน Admin:");
+            if (password === "vapanika3541") {
+                document.getElementById('adminModal').style.display = "flex";
+                renderAdminList();
+            } else if(password !== null) {
+                alert("รหัสผ่านไม่ถูกต้อง!");
+            }
+        }
+
+        function closeAdmin() {
+            document.getElementById('adminModal').style.display = "none";
+            cancelEdit(); 
+        }
+
+        function renderAdminList() {
+            const list = document.getElementById('adminItemList');
+            list.innerHTML = "";
+            products.forEach((p, index) => {
+                list.innerHTML += `
+                <div class="admin-item">
+                    <span><b>${p.id}</b> - ${p.name.substring(0, 20)}...</span>
+                    <div class="admin-actions">
+                        <button class="btn-edit" onclick="editProduct(${index})">แก้ไข</button>
+                        <button class="btn-del" onclick="deleteProduct(${index})">ลบ</button>
+                    </div>
+                </div>`;
+            });
+        }
+
+        function editProduct(index) {
+            const p = products[index];
+            document.getElementById('edit_index').value = index;
+            document.getElementById('a_id').value = p.id;
+            document.getElementById('a_name').value = p.name;
+            document.getElementById('a_image').value = p.image;
+            document.getElementById('a_link').value = p.link;
+            document.getElementById('a_tags').value = p.tags;
+            
+            document.getElementById('submitBtn').innerText = "💾 บันทึกการแก้ไข";
+            document.getElementById('submitBtn').style.backgroundColor = "#4dabf7";
+            document.getElementById('submitBtn').style.color = "white";
+            document.getElementById('cancelEditBtn').style.display = "block";
+        }
+
+        function cancelEdit() {
+            document.getElementById('addProductForm').reset();
+            document.getElementById('edit_index').value = "-1";
+            document.getElementById('submitBtn').innerText = "+ เพิ่มพิกัดใหม่";
+            document.getElementById('submitBtn').style.backgroundColor = "white";
+            document.getElementById('submitBtn').style.color = "black";
+            document.getElementById('cancelEditBtn').style.display = "none";
+        }
+
+        // 🟢 อัปเดตการทำงานเมื่อกดปุ่มบันทึก/เพิ่ม เพื่อดึงคำแปลมาใส่ก่อนบันทึก
+        document.getElementById('addProductForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const editIndex = parseInt(document.getElementById('edit_index').value);
+            let thaiName = document.getElementById('a_name').value;
+
+            // ทำให้ปุ่มกดซ้ำไม่ได้ และโชว์ข้อความว่ากำลังแปลภาษา
+            submitBtn.innerText = "⏳ กำลังแปลภาษาและบันทึก...";
+            submitBtn.disabled = true;
+
+            // เรียกฟังก์ชันแปลภาษาอัตโนมัติ
+            let englishName = await fetchAutoTranslation(thaiName);
+
+            const newData = {
+                id: document.getElementById('a_id').value.toUpperCase(),
+                name: thaiName,
+                name_en: englishName,
+                image: document.getElementById('a_image').value,
+                link: document.getElementById('a_link').value,
+                tags: document.getElementById('a_tags').value
+            };
+
+            if (editIndex > -1) {
+                products[editIndex] = newData;
+                cancelEdit();
+            } else {
+                products.unshift(newData);
+                this.reset();
+            }
+            saveData(); 
+            
+            // คืนค่าปุ่มให้กลับมาเหมือนเดิม
+            submitBtn.disabled = false;
+            if(editIndex === -1){
+                submitBtn.innerText = "+ เพิ่มพิกัดใหม่";
+            } else {
+                cancelEdit();
+            }
+        });
+
+        function deleteProduct(index) {
+            if(confirm("ลบพิกัดสินค้านี้?")) {
+                products.splice(index, 1);
+                saveData(); 
+                cancelEdit(); 
+            }
+        }
+
+        function downloadCleanHTML() {
+            cancelEdit();
+            let docClone = document.documentElement.cloneNode(true);
+            
+            let adminBox = docClone.querySelector("#adminModal");
+            if(adminBox) { adminBox.removeAttribute("style"); }
+
+            let searchInputDesktop = docClone.querySelector("#searchInput");
+            if(searchInputDesktop) { searchInputDesktop.value = ""; }
+
+            let searchInputMobile = docClone.querySelector("#searchInputMobile");
+            if(searchInputMobile) { searchInputMobile.value = ""; }
+
+            let pGrid = docClone.querySelector("#productGrid");
+            if(pGrid) { pGrid.innerHTML = ""; }
+
+            let mGrid = docClone.querySelector("#productGridMobile");
+            if(mGrid) { mGrid.innerHTML = ""; }
+            
+            let aList = docClone.querySelector("#adminItemList");
+            if(aList) { aList.innerHTML = ""; }
+
+            let htmlContent = "<!DOCTYPE html>\n" + docClone.outerHTML;
+            
+            const dataRegex = /const initialData\s*=\s*\[[\s\S]*?\];/;
+            const freshData = `const initialData = ${JSON.stringify(products, null, 12)};`;
+            htmlContent = htmlContent.replace(dataRegex, freshData);
+            
+            const blob = new Blob([htmlContent], { type: "text/html;charset=utf-8;" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "index.html"; 
+            link.style.display = "none";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            alert("✅ โหลดไฟล์ index.html เรียบร้อย! นำไปอัปขึ้น Github ได้เลยครับ");
+        }
+
+
+        /* -----------------------------------------
+           JAVASCRIPT FOR MOBILE
+           ----------------------------------------- */
+        function renderProductsMobile(dataToRender) {
+            const grid = document.getElementById('productGridMobile');
+            grid.innerHTML = ""; 
+
+            if(dataToRender.length === 0) {
+                grid.innerHTML = `
+                <div style='grid-column: span 3; text-align:center; width:100%; color:#777; padding: 40px 0;'>
+                    <p style='font-size: 0.8rem; margin-bottom: 5px;'>ยังไม่มีสินค้าในระบบ</p>
+                    <span class="en-text" style='font-size: 0.65rem;'>No items available</span>
+                </div>`;
+                return;
+            }
+
+            dataToRender.forEach(p => {
+                const enTextDisplay = p.name_en ? p.name_en : "HOKHOO Selected Item";
+                const isDisabled = p.link.includes("javascript:void(0)") ? "disabled" : "";
+                
+                const card = `
+                <div class="product-card">
+                    <a href="${p.link}" class="product-link" ${isDisabled ? "" : 'target="_blank"'}>
+                        <div class="badge-id">${p.id}</div> 
+                        <img src="${p.image}" alt="${p.name}" class="product-image" loading="lazy">
+                    </a>
+                    <div class="product-info">
+                        <div class="product-tags">${p.tags}</div> 
+                        <h3 class="product-title">
+                            ${p.name}
+                            <span class="en-text">${enTextDisplay}</span>
+                        </h3>
+                        <!-- 🟢 แก้ไขปุ่มตรงนี้ -->
+                        <a href="${p.link}" ${isDisabled ? "" : 'target="_blank"'} class="view-btn ${isDisabled}">
+                            📍 ดูพิกัด คลิ๊ก!
+                            <span class="en-btn-sub">Click to View!</span>
+                        </a>
+                    </div>
+                </div>`;
+                grid.innerHTML += card;
+            });
+        }
+
+        function filterProductsMobile() {
+            const query = document.getElementById('searchInputMobile').value.toLowerCase().trim();
+            const filtered = products.filter(p => 
+                p.id.toLowerCase().includes(query) || 
+                p.tags.toLowerCase().includes(query) ||
+                p.name.toLowerCase().includes(query) ||
+                (p.name_en && p.name_en.toLowerCase().includes(query))
+            );
+            renderProductsMobile(filtered);
+        }
+
+        // 🟢 เรนเดอร์หน้าจอว่างเปล่า (หรือหน้าจอที่มีข้อมูล) ทันทีที่เปิดเว็บ
+        renderProducts(products);
+        renderProductsMobile(products);
+    </script>
+
+
+</body></html>
